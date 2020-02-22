@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  recepies-api:
+    build:
+      context: ./recipes-api
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"

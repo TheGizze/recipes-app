@@ -1,0 +1,83 @@
+
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "recipes"
+basePath: "/api/v1"
+tags:
+  - name: "recipes"
+schemes:
+  - "https"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+paths:
+  /recipes/{recipe_id}:
+    get:
+      tags:
+      - "recipe"
+      summary: "Get an recipe data from database"
+      operationId: "get_recipe"
+      parameters:
+        - name: "recipe_id"
+          in: "path"
+          description: "The id of the recipe to retrieve"
+          required: true
+          type: "string"
+        - name: "ingredients"
+          in: "header"
+          description: "List of ingredients for the recepie"
+          required: true
+          type: "array"
+          items:
+            type: "string"
+        - name: "directions"
+          in: "header"
+          description: "Directions to follow for the recipe"
+          required: true
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved recipe"
+          schema:
+            $ref: "#/definitions/recipe"
+        404:
+          description: "recipe doesn't exist"
+      x-swagger-router-controller: "recipes_api.web.controllers.recipe_controller"
+    delete:
+      tags:
+      - "recipe"
+      summary: "Remove a recipe from the database"
+      operationId: "remove_recipe"
+      parameters:
+        - name: "recipe_id"
+          in: "path"
+          description: "The id of the recipe to retrieve"
+          required: true
+          type: "string"
+      responses:
+        202:
+          description: "Successfully deleted recipe"
+        404:
+          description: "recipe doesn't exist"
+      x-swagger-router-controller: "recipes_api.web.controllers.recipe_controller"
+definitions:
+  recipe:
+    required:
+    - recipe_id
+    properties:
+      recipe_id:
+        type: string
+      ingredients:
+        type: array
+        items:
+          type: string
+      directions:
+        type: array
+        items:
+          type: string
+
+...
