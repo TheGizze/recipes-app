@@ -13,7 +13,87 @@ consumes:
 produces:
   - "application/json"
 paths:
+  /recipes:
+    get:
+      tags:
+      - "recipes"
+      summary: "Get all recipes"
+      operationId: "get_recipes"
+      responses:
+        200:
+          description: "Successfully retrieved recipes"
+          schema:
+            $ref: "#/definitions/recipe"
+        404:
+          description: "recipe doesn't exist"
+      x-swagger-router-controller: "recipes_api.web.controllers.recipe_controller"
   /recipes/{recipe_id}:
+    post:
+      tags:
+      - "recipe"
+      summary: "Get an recipe data from database"
+      operationId: "post_recipe"
+      parameters:
+        - name: "recipe_id"
+          in: "path"
+          description: "The id of the recipe to retrieve"
+          required: true
+          type: "string"
+        - name: "ingredients"
+          in: "header"
+          description: "List of ingredients for the recepie"
+          required: false
+          type: "array"
+          items:
+            type: "string"
+        - name: "directions"
+          in: "header"
+          description: "Directions to follow for the recipe"
+          required: false
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Successfully created new recipe"
+          schema:
+            $ref: "#/definitions/recipe"
+        404:
+          description: "recipe doesn't exist"
+      x-swagger-router-controller: "recipes_api.web.controllers.recipe_controller"
+    put:
+      tags:
+      - "recipe"
+      summary: "Get an recipe data from database"
+      operationId: "put_recipe"
+      parameters:
+        - name: "recipe_id"
+          in: "path"
+          description: "The id of the recipe to retrieve"
+          required: true
+          type: "string"
+        - name: "ingredients"
+          in: "header"
+          description: "List of ingredients for the recepie"
+          required: false
+          type: "array"
+          items:
+            type: "string"
+        - name: "directions"
+          in: "header"
+          description: "Directions to follow for the recipe"
+          required: false
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "Successfully retrieved recipe"
+          schema:
+            $ref: "#/definitions/recipe"
+        404:
+          description: "recipe doesn't exist"
+      x-swagger-router-controller: "recipes_api.web.controllers.recipe_controller"
     get:
       tags:
       - "recipe"
@@ -28,14 +108,14 @@ paths:
         - name: "ingredients"
           in: "header"
           description: "List of ingredients for the recepie"
-          required: true
+          required: false
           type: "array"
           items:
             type: "string"
         - name: "directions"
           in: "header"
           description: "Directions to follow for the recipe"
-          required: true
+          required: false
           type: "array"
           items:
             type: "string"
