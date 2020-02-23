@@ -27,7 +27,7 @@ paths:
         404:
           description: "recipe doesn't exist"
       x-swagger-router-controller: "recipes_api.web.controllers.recipe_controller"
-  /recipes/{recipe_id}:
+  /recipe/{recipe_id}:
     post:
       tags:
       - "recipe"
@@ -131,7 +131,7 @@ paths:
       tags:
       - "recipe"
       summary: "Remove a recipe from the database"
-      operationId: "remove_recipe"
+      operationId: "delete_recipe"
       parameters:
         - name: "recipe_id"
           in: "path"
