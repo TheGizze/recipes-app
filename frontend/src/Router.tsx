@@ -1,24 +1,28 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import { routes } from './routes';
+import { DefaultLayout } from './layouts/DefaultLayout';
 
 const CreateRoutes: React.FunctionComponent = () => {
   return (
-    <React.Fragment>
+    <>
       {routes.map(route => (
         <Route key={route.path} path={route.path} component={route.component} exact={route.exact || false} />
       ))}
-    </React.Fragment>
+    </>
   );
 };
 
+//TODO: Do we use HashRouter or BrowserRouter??
 const Router: React.FunctionComponent = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
-        <CreateRoutes />
+        <DefaultLayout>
+          <CreateRoutes />
+        </DefaultLayout>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

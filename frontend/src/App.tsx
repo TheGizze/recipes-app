@@ -1,13 +1,9 @@
 import React from 'react';
 import { Router } from './Router';
-import { DefaultLayout } from './layouts/DefaultLayout';
+import './styles/global.scss';
 
 const App: React.FunctionComponent = () => {
-  return (
-    <DefaultLayout>
-      <Router />
-    </DefaultLayout>
-  );
+  return <Router />;
 };
 
 export default App;

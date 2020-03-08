@@ -1,7 +1,11 @@
 import React from 'react';
 
 const FrontPage: React.FunctionComponent = () => {
-  return <h1>Hello</h1>;
+  return (
+    <div className="test">
+      <h1>HAA</h1>
+    </div>
+  );
 };
 
 export { FrontPage };
