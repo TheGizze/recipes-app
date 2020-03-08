@@ -23,10 +23,8 @@ const NavigationLinks = () => {
       <>
         {usedRoutes.map(route => {
           return (
-            <span className={styles.linkWrapper}>
-              <Link key={route.path} to={route.path}>
-                {route.linkText}
-              </Link>
+            <span key={route.path} className={styles.linkWrapper}>
+              <Link to={route.path}>{route.linkText}</Link>
             </span>
           );
         })}

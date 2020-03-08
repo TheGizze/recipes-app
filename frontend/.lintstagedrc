@@ -2,10 +2,7 @@
   "**/*.+(js|jsx|css|less|scss|ts|tsx|md|json)": [
     "prettier --write"
   ],
-  "**/*.ts?(x)": [
-    "tsc -p ./tsconfig.typecheck.json"
-  ],
   "**/*.(t|j)s?(x)": [
-    "eslint --fix"
+    "eslint --fix --ext .js,.jsx,.ts,.tsx "
   ]
 }
