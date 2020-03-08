@@ -2,11 +2,7 @@ import React from 'react';
 import { Header } from '../components/Header';
 import * as styles from './styles/defaultLayout.module.scss';
 
-interface DefaultLayoutProps {
-  children: React.ReactNode;
-}
-
-const DefaultLayout: React.FunctionComponent<DefaultLayoutProps> = props => {
+const DefaultLayout: React.FunctionComponent = props => {
   return (
     <div>
       <Header />

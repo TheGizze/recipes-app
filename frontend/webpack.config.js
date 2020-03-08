@@ -7,7 +7,6 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 module.exports = {
   // webpack will take the files from ./src/index
   entry: './src/index',
-
   // and output it into /dist as bundle.js
   output: {
     path: path.join(__dirname, '/dist'),
