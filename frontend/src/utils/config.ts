@@ -1,7 +1,6 @@
 type Config = {
   backendURL: string;
   environment: string;
-  CSP: string;
 };
 
 type ApplicationConfig = {
@@ -10,9 +9,12 @@ type ApplicationConfig = {
 
 const config: ApplicationConfig = {
   development: {
-    CSP: '',
     backendURL: 'http://localhost:5000/api/v1',
     environment: 'development',
+  },
+  production: {
+    backendURL: 'http://localhost:5000/api/v1',
+    environment: 'production',
   },
 };
 
