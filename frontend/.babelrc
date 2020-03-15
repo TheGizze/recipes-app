@@ -1,0 +1,41 @@
+{
+  "env": {
+    "development": {
+      "presets": ["@babel/env", "@babel/typescript", "@babel/react"],
+      "plugins": [
+        "@babel/proposal-class-properties",
+        "babel-plugin-typescript-to-proptypes",
+        [
+          "@babel/plugin-transform-runtime",
+          {
+            "regenerator": true
+          }
+        ]
+      ]
+    },
+    "test": {
+      "presets": ["@babel/env", "@babel/typescript", "@babel/react"],
+      "plugins": [
+        "@babel/proposal-class-properties",
+        [
+          "@babel/plugin-transform-runtime",
+          {
+            "regenerator": true
+          }
+        ]
+      ]
+    },
+    "production": {
+      "presets": ["@babel/env", "@babel/typescript", "@babel/react"],
+      "plugins": [
+        "@babel/proposal-class-properties",
+        [
+          "@babel/plugin-transform-runtime",
+          {
+            "regenerator": true
+          }
+        ]
+      ]
+    }
+  }
+}
