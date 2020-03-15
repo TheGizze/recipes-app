@@ -2,11 +2,11 @@ import { fetcher } from '../utils/Fetcher';
 
 export class RecipiesAPI implements RecipiesAPIInterface {
   getAllRecipies(host: string): Promise<Recipie> {
-    return fetcher(host, '/');
+    return fetcher(host, '/receies');
   }
 
   getSingleRecipie(host: string, id: string): Promise<Recipie> {
-    return fetcher(host, `/recipies/${id}`);
+    return fetcher(host, `/recipie/${id}`);
   }
 }
 
