@@ -7,7 +7,7 @@ basePath: "/api/v1"
 tags:
   - name: "recipes"
 schemes:
-  - "https"
+  - "http"
 consumes:
   - "application/json"
 produces:
@@ -27,32 +27,19 @@ paths:
         404:
           description: "recipe doesn't exist"
       x-swagger-router-controller: "recipes_api.web.controllers.recipe_controller"
-  /recipe/{recipe_id}:
+  /recipe:
     post:
       tags:
       - "recipe"
-      summary: "Get an recipe data from database"
+      summary: "create new recipe"
       operationId: "post_recipe"
       parameters:
-        - name: "recipe_id"
-          in: "path"
-          description: "The id of the recipe to retrieve"
+        - name: "request_body"
+          in: "body"
+          description: ""
           required: true
-          type: "string"
-        - name: "ingredients"
-          in: "header"
-          description: "List of ingredients for the recepie"
-          required: false
-          type: "array"
-          items:
-            type: "string"
-        - name: "directions"
-          in: "header"
-          description: "Directions to follow for the recipe"
-          required: false
-          type: "array"
-          items:
-            type: "string"
+          schema:
+            $ref: "#/definitions/new_recipe"
       responses:
         200:
           description: "Successfully created new recipe"
@@ -61,31 +48,23 @@ paths:
         404:
           description: "recipe doesn't exist"
       x-swagger-router-controller: "recipes_api.web.controllers.recipe_controller"
+  /recipe/{recipe_id}:
     put:
       tags:
       - "recipe"
-      summary: "Get an recipe data from database"
+      summary: "update recipe data in database"
       operationId: "put_recipe"
       parameters:
         - name: "recipe_id"
           in: "path"
-          description: "The id of the recipe to retrieve"
+          description: "The id of the recipe to update"
           required: true
           type: "string"
-        - name: "ingredients"
-          in: "header"
-          description: "List of ingredients for the recepie"
-          required: false
-          type: "array"
-          items:
-            type: "string"
-        - name: "directions"
-          in: "header"
-          description: "Directions to follow for the recipe"
-          required: false
-          type: "array"
-          items:
-            type: "string"
+        - name: "request_body"
+          in: "body"
+          required: true
+          schema:
+            $ref:  "#/definitions/new_recipe"
       responses:
         200:
           description: "Successfully retrieved recipe"
@@ -97,7 +76,7 @@ paths:
     get:
       tags:
       - "recipe"
-      summary: "Get an recipe data from database"
+      summary: "Get recipe from database"
       operationId: "get_recipe"
       parameters:
         - name: "recipe_id"
@@ -105,20 +84,6 @@ paths:
           description: "The id of the recipe to retrieve"
           required: true
           type: "string"
-        - name: "ingredients"
-          in: "header"
-          description: "List of ingredients for the recepie"
-          required: false
-          type: "array"
-          items:
-            type: "string"
-        - name: "directions"
-          in: "header"
-          description: "Directions to follow for the recipe"
-          required: false
-          type: "array"
-          items:
-            type: "string"
       responses:
         200:
           description: "Successfully retrieved recipe"
@@ -135,7 +100,7 @@ paths:
       parameters:
         - name: "recipe_id"
           in: "path"
-          description: "The id of the recipe to retrieve"
+          description: "The id of the recipe to delete"
           required: true
           type: "string"
       responses:
@@ -145,17 +110,19 @@ paths:
           description: "recipe doesn't exist"
       x-swagger-router-controller: "recipes_api.web.controllers.recipe_controller"
 definitions:
-  recipe:
+  new_recipe:
     required:
-    - recipe_id
+    - recipe_name
+    - recipe_description
+    - recipe_ingredients
+    - recipe_directions
+    - recipe_tags
     properties:
-      recipe_id:
+      recipe_name:
         type: string
-      name:
+      recipe_description:
         type: string
-      description:
-        type: string
-      ingredients:
+      recipe_ingredients:
         type: array
         items:
           type: object
@@ -164,7 +131,7 @@ definitions:
               type: string
             measurement:
               type: string
-      directions:
+      recipe_directions:
         type: array
         items:
           type: object
@@ -173,9 +140,41 @@ definitions:
               type: integer
             step_directions:
               type: string
-      tags:
+      recipe_tags:
         type: array
         items:
           type: string
+
+  recipe:
+    properties:
+      id:
+        type: object
+        properties:
+          recipe_name:
+            type: string
+          recipe_description:
+            type: string
+          recipe_ingredients:
+            type: array
+            items:
+              type: object
+              properties:
+                ingridient_name:
+                  type: string
+                measurement:
+                  type: string
+          recipe_directions:
+            type: array
+            items:
+              type: object
+              properties:
+                step_order:
+                  type: integer
+                step_directions:
+                  type: string
+          recipe_tags:
+            type: array
+            items:
+              type: string
 
 ...
