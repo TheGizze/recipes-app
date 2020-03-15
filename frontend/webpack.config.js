@@ -1,10 +1,12 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = {
+  context: __dirname,
   // webpack will take the files from ./src/index
   entry: './src/index',
   // and output it into /dist as bundle.js
@@ -76,5 +78,6 @@ module.exports = {
       template: './static/index.html',
       filename: './index.html',
     }),
+    new ForkTsCheckerWebpackPlugin(),
   ],
 };
