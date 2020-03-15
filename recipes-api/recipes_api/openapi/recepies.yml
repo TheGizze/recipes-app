@@ -151,11 +151,29 @@ definitions:
     properties:
       recipe_id:
         type: string
+      name:
+        type: string
+      description:
+        type: string
       ingredients:
         type: array
         items:
-          type: string
+          type: object
+          properties:
+            ingridient_name:
+              type: string
+            measurement:
+              type: string
       directions:
+        type: array
+        items:
+          type: object
+          properties:
+            step_order:
+              type: integer
+            step_directions:
+              type: string
+      tags:
         type: array
         items:
           type: string
