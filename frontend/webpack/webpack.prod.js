@@ -1,6 +1,5 @@
 const merge = require('webpack-merge');
 const common = require('../webpack.common.js');
-const CSPHTMLWebpackPlugin = require('csp-html-webpack-plugin');
 module.exports = merge(common, {
   mode: 'production',
   module: {
@@ -40,5 +39,4 @@ module.exports = merge(common, {
       },
     ],
   },
-  plugins: [new CSPHTMLWebpackPlugin()],
 });

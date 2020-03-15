@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CspHtmlWebpackPlugin = require('csp-html-webpack-plugin');
 
 new webpack.EnvironmentPlugin({
   NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
@@ -48,5 +49,25 @@ module.exports = {
       template: './static/index.html',
       filename: './index.html',
     }),
+    new CspHtmlWebpackPlugin(
+      {
+        'base-uri': "'self'",
+        'object-src': "'none'",
+        'script-src': ["'unsafe-inline'", "'self'", "'unsafe-eval'"],
+        'style-src': ["'unsafe-inline'", "'self'", "'unsafe-eval'"],
+      },
+      {
+        enabled: true,
+        hashingMethod: 'sha256',
+        hashEnabled: {
+          'script-src': false,
+          'style-src': false,
+        },
+        nonceEnabled: {
+          'script-src': false,
+          'style-src': false,
+        },
+      }
+    ),
   ],
 };
