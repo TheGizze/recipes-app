@@ -1,7 +1,7 @@
 recipes = {
           "1": {"name": "template_name",
           "description": "some neat description of the dish",
-          "ingredients": [{"ingredient_name": "tomato", "measurement": "1"}]
+          "ingredients": [{"ingredient_name": "tomato", "measurement": "1"}],
           "steps": ["step 1", "step 2", "step 3", "step 4"],
           "tags": ["tag 1", "tag 2"]}
 }
@@ -25,7 +25,6 @@ def put_recipe(id, req_body):
 
 def post_recipe(req_body):
     recipes[str(next_id)] = req_body
-    next_id += 1
     return 200
 
 
